@@ -184,7 +184,7 @@ class Network(object):
                 evaluation_accuracy.append(accuracy)
                 print("Accuracy on evaluation data: {} / {}".format(
                     self.accuracy(evaluation_data), n_data))
-            if callback:
+            if callback is not None:
                 callback(self)
             print
         return evaluation_cost, evaluation_accuracy, \
