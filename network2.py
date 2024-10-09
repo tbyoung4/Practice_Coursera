@@ -132,7 +132,8 @@ class Network(object):
             monitor_evaluation_cost=False,
             monitor_evaluation_accuracy=False,
             monitor_training_cost=False,
-            monitor_training_accuracy=False):
+            monitor_training_accuracy=False,
+            callback=None):
         """Train the neural network using mini-batch stochastic gradient
         descent.  The ``training_data`` is a list of tuples ``(x, y)``
         representing the training inputs and the desired outputs.  The
@@ -183,6 +184,8 @@ class Network(object):
                 evaluation_accuracy.append(accuracy)
                 print("Accuracy on evaluation data: {} / {}".format(
                     self.accuracy(evaluation_data), n_data))
+            if callback:
+                callback(self)
             print
         return evaluation_cost, evaluation_accuracy, \
             training_cost, training_accuracy
